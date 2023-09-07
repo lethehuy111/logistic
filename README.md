@@ -11,12 +11,12 @@
 
    # Note: open file .env and update 
 
-   # DB_CONNECTION=mysql
-   # DB_HOST=logistic-mysql
-   # DB_PORT=3306
-   # DB_DATABASE=app
-   # DB_USERNAME=app
-   # DB_PASSWORD=secret    
+    DB_CONNECTION=mysql
+    DB_HOST=logistic-mysql
+    DB_PORT=3306
+    DB_DATABASE=app
+    DB_USERNAME=app
+    DB_PASSWORD=secret    
 
    # Storage permision issue
 
@@ -32,7 +32,9 @@
 
 ## Start source frontend 
 
-    cd frontend/
+    cd ../frontend/
+
+    npm install
 
     npm run dev
     
