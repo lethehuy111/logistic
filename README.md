@@ -28,6 +28,10 @@
 
     chmod -R 775 /var/www/storage
 
+    php artisan migrate
+
+    php artisan db:seed
+
     exit
 
 ## Start source frontend 
