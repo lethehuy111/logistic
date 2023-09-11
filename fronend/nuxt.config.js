@@ -1,4 +1,3 @@
-const webpack = require("webpack");
 export default {
   // Global page headers: https://go.nuxtjs.dev/config-head
   head: {
@@ -34,11 +33,23 @@ export default {
     {
       src: '~/plugins/vue-star-rating.js',
       mode: 'client'
+    }, {src: "~/plugins/jquery.js", mode: "client"}, {src: "~/plugins/vue-js-modal.js", mode: "client"}], router: {
+    middleware: 'auth'
+  },
+  auth: {
+      strategies: {
+      local: {
+        endpoints: {
+          login: { url: '/login', method: 'post', propertyName: 'authorisation.token'},
+          user: { url: '/user', method: 'get', propertyName: 'result' },
+          logout: { url: '/logout', method: 'post'}
+        }
+      }
     },
-    { src: "~/plugins/jquery.js", mode: "client" },
-    { src: "~/plugins/vue-js-modal.js", mode: "client" }
-  ],
+    localStorage: {
 
+    }
+  },
   // Auto import components: https://go.nuxtjs.dev/config-components
   components: true,
 
@@ -55,7 +66,11 @@ export default {
   },
 
   // Modules: https://go.nuxtjs.dev/config-modules
-  modules: [],
+  modules: [
+    '@nuxtjs/axios',
+    '@nuxtjs/auth',
+    'vue-sweetalert2/nuxt'
+  ],
 
   // Build Configuration: https://go.nuxtjs.dev/config-build
   build: {

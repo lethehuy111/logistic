@@ -31,6 +31,10 @@
     php artisan migrate
 
     php artisan db:seed
+    
+    php artisan vendor:publish --provider="Tymon\JWTAuth\Providers\LaravelServiceProvider"
+    
+    php artisan jwt:secret
 
     exit
 

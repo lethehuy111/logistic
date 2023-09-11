@@ -5,4 +5,6 @@ namespace App\Repositories\Interfaces;
 interface AuthRepositoryInterface
 {
     public function login(array $params);
+
+    public function logout();
 }

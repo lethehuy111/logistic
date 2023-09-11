@@ -2,6 +2,7 @@
 
 namespace App\Models;
 
+use App\Globals\Constants;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Relations\BelongsTo;
 use Illuminate\Database\Eloquent\Relations\HasMany;
@@ -15,7 +16,9 @@ class Order extends Model
         "order_num",
         "user_created_id",
         "phone",
-        "customer_name",
+        "phone_reception",
+        "sender_name",
+        "recipienter_name",
         "shipping_date",
         "expected_date",
         "shipping_address",
@@ -25,7 +28,8 @@ class Order extends Model
         "product_name",
         "shipping_fee",
         "weight",
-        "status"
+        "status",
+        "note"
     ];
 
     public function userCreated(): BelongsTo
@@ -47,8 +51,19 @@ class Order extends Model
         return $this->hasMany(OrderProcess::class, 'order_id', 'id');
     }
 
+    public function currentOrderProcess(): HasOne
+    {
+        return $this->hasOne(OrderProcess::class, 'order_id', 'id')
+            ->where("status", Constants::STATUS_PROCESS_PROCESSING);
+    }
+
+    public function nextOrderProcess(): HasOne
+    {
+        return $this->hasOne(OrderProcess::class, 'order_id', 'id')
+            ->where("status", Constants::STATUS_PROCESS_OPEN);
+    }
     public function rate(): HasOne
     {
-        return $this->hasOne(Order::class, 'order_id', 'id');
+        return $this->hasOne(Order::class, 'id', 'order_id');
     }
 }

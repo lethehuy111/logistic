@@ -29,7 +29,7 @@ class BaseRepository
     /**
      * @inheritdoc
      */
-    public function find(array $conditions = [])
+    public function find(array $conditions = []) : object
     {
         return $this->model->where($conditions)->get();
     }
@@ -37,7 +37,7 @@ class BaseRepository
     /**
      * @inheritdoc
      */
-    public function findOne(array $conditions)
+    public function findOne(array $conditions) : object
     {
         return $this->model->where($conditions)->first();
     }
@@ -45,38 +45,30 @@ class BaseRepository
     /**
      * @inheritdoc
      */
-    public function findById(int $id)
+    public function findById(int $id) : object
     {
         return $this->model->findOrFail($id);
     }
 
     /**
-     * @inheritdoc
+     * @param array $attributes
+     * @return mixed
      */
     public function create(array $attributes)
     {
         return $this->model->create($attributes);
     }
 
-    /**
-     * @inheritdoc
-     */
     public function update(Model $model, array $attributes = []): bool
     {
         return $model->update($attributes);
     }
 
-    /**
-     * @inheritdoc
-     */
     public function save(Model $model): bool
     {
         return $model->save();
     }
 
-    /**
-     * @inheritdoc
-     */
     public function delete(Model $model): ?bool
     {
         return $model->delete();

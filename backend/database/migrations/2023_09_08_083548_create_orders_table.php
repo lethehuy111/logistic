@@ -21,8 +21,10 @@ class CreateOrdersTable extends Migration
                 'users'
             )->onUpdate('cascade')->onDelete('cascade');
             $table->string('phone');
-            $table->string("customer_name");
-            $table->dateTime('shipping_date');
+            $table->string('phone_reception');
+            $table->string("sender_name");
+            $table->string("recipienter_name");
+            $table->dateTime('shipping_date')->nullable();
             $table->dateTime('expected_date');
             $table->string('shipping_address');
             $table->string('recipient_address');
@@ -36,6 +38,7 @@ class CreateOrdersTable extends Migration
             $table->double('shipping_fee');
             $table->integer('weight');
             $table->tinyInteger('status')->default(Constants::STATUS_ACTIVE);
+            $table->text('note')->nullable();
             $table->timestamps();
         });
     }

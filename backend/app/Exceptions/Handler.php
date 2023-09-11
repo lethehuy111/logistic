@@ -2,7 +2,10 @@
 
 namespace App\Exceptions;
 
+use App\Http\Resources\ErrorResource;
 use Illuminate\Foundation\Exceptions\Handler as ExceptionHandler;
+use Illuminate\Validation\ValidationException;
+use Symfony\Component\HttpFoundation\Response;
 use Throwable;
 
 class Handler extends ExceptionHandler
@@ -38,4 +41,13 @@ class Handler extends ExceptionHandler
             //
         });
     }
+
+//    public function render($request, Throwable $e)
+//    {
+//        if ($e instanceof ValidationException) {
+//            return response()->json(new ErrorResource($e->validator->errors(), $e->getCode()), Response::HTTP_BAD_REQUEST);
+//        }
+//
+//        return response()->json(new ErrorResource($e->getMessage(), $e->getCode()), Response::HTTP_BAD_REQUEST);
+//    }
 }

@@ -1,5 +1,6 @@
 <?php
 
+use App\Globals\Constants;
 use Illuminate\Database\Migrations\Migration;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Support\Facades\Schema;
@@ -25,6 +26,7 @@ class CreateOrderProcessTable extends Migration
                 'province_stocks'
             )->onUpdate('cascade')->onDelete('cascade');
             $table->tinyInteger('status');
+            $table->tinyInteger('type')->default(Constants::TYPE_NORMAL_PROCESS);
             $table->timestamps();
         });
     }

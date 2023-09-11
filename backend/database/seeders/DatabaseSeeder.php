@@ -52,39 +52,45 @@ class DatabaseSeeder extends Seeder
                'name' => 'Nguyến văn Hoàng' , 'email' => 'hoangnv@gmail.com' ,'password' => Hash::make('123456'),'email_verified_at' =>  now(), 'role' =>Constants::ROLE_CUSTOMER, 'status' => Constants::STATUS_ACTIVE, 'stock_id' => 2
             ],
             [
-               'name' => 'Nguyễn văn Trường' , 'email' => 'truongnv@gmail.com' ,'password' => Hash::make('123456'),'email_verified_at' =>  now(),'role' => Constants::ROLE_CUSTOMER, 'status' => Constants::STATUS_ACTIVE, 'stock_id' => 3
+               'name' => 'Employee HN' , 'email' => 'ehn@gmail.com' ,'password' => Hash::make('123456'),'email_verified_at' =>  now(),'role' => Constants::ROLE_EMPLOYEE, 'status' => Constants::STATUS_ACTIVE, 'stock_id' => 1
             ],
             [
-               'name' => 'Nguyễn Mai Linh' , 'email' => 'linhnm@gmail.com' ,'password' => Hash::make('123456'),'email_verified_at' =>  now(),'role' => Constants::ROLE_EMPLOYEE, 'status' => Constants::ROLE_EMPLOYEE, 'stock_id' => 4
+                'name' => 'Employee NB' , 'email' => 'enb@gmail.com' ,'password' => Hash::make('123456'),'email_verified_at' =>  now(),'role' => Constants::ROLE_EMPLOYEE, 'status' => Constants::STATUS_ACTIVE, 'stock_id' => 2
             ],
             [
-               'name' => 'Nhung nguyễn' , 'email' => 'nhung@gmail.com' , 'password' =>Hash::make('123456'), 'email_verified_at' => now(),'role' => Constants::ROLE_EMPLOYEE, 'status' => Constants::STATUS_ACTIVE , 'stock_id' => 5
+                'name' => 'Employee TH' , 'email' => 'eth@gmail.com' ,'password' => Hash::make('123456'),'email_verified_at' =>  now(),'role' => Constants::ROLE_EMPLOYEE, 'status' => Constants::STATUS_ACTIVE, 'stock_id' => 3
             ],
             [
-                'name' => 'Lê Thế Huy' , 'email' => 'huylt@gmail.com' , 'password' =>Hash::make('123456'), 'email_verified_at' => now(),'role' => Constants::ROLE_SHIPPER, 'status' => Constants::STATUS_ACTIVE , 'stock_id' => 1
+                'name' => 'Employee NA' , 'email' => 'ena@gmail.com' ,'password' => Hash::make('123456'),'email_verified_at' =>  now(),'role' => Constants::ROLE_EMPLOYEE, 'status' => Constants::STATUS_ACTIVE, 'stock_id' => 4
             ],
             [
-                'name' => 'Nguyễn Văn Bắc' , 'email' => 'bac@gmail.com' , 'password' =>Hash::make('123456'), 'email_verified_at' => now(),'role' => Constants::ROLE_SHIPPER, 'status' => Constants::STATUS_ACTIVE , 'stock_id' => 2
+               'name' => 'Employee HT' , 'email' => 'eht@gmail.com' ,'password' => Hash::make('123456'),'email_verified_at' =>  now(),'role' => Constants::ROLE_EMPLOYEE, 'status' => Constants::STATUS_ACTIVE, 'stock_id' => 5
             ],
             [
-                'name' => 'Hoàng Quốc Huy' , 'email' => 'huyhq@gmail.com' , 'password' =>Hash::make('123456'), 'email_verified_at' => now(),'role' => Constants::ROLE_SHIPPER, 'status' => Constants::STATUS_ACTIVE , 'stock_id' => 3
+                'name' => 'Shipper HN' , 'email' => 'shn@gmail.com' , 'password' =>Hash::make('123456'), 'email_verified_at' => now(),'role' => Constants::ROLE_SHIPPER, 'status' => Constants::STATUS_ACTIVE , 'stock_id' => 1
             ],
             [
-                'name' => 'Trương Văn Tùng' , 'email' => 'tung@gmail.com' , 'password' =>Hash::make('123456'), 'email_verified_at' => now(),'role' => Constants::ROLE_SHIPPER, 'status' => Constants::STATUS_ACTIVE , 'stock_id' => 4
+                'name' => 'Shipper NB' , 'email' => 'snb@gmail.com' , 'password' =>Hash::make('123456'), 'email_verified_at' => now(),'role' => Constants::ROLE_SHIPPER, 'status' => Constants::STATUS_ACTIVE , 'stock_id' => 2
             ],
             [
-                'name' => 'Nguyễn Thị Nhung' , 'email' => 'nhungnt@gmail.com' , 'password' =>Hash::make('123456'), 'email_verified_at' => now(),'role' => Constants::ROLE_SHIPPER, 'status' => Constants::STATUS_ACTIVE , 'stock_id' => 5
+                'name' => 'Shipper TH' , 'email' => 'sth@gmail.com' , 'password' =>Hash::make('123456'), 'email_verified_at' => now(),'role' => Constants::ROLE_SHIPPER, 'status' => Constants::STATUS_ACTIVE , 'stock_id' => 3
+            ],
+            [
+                'name' => 'Shipper NA' , 'email' => 'sna@gmail.com' , 'password' =>Hash::make('123456'), 'email_verified_at' => now(),'role' => Constants::ROLE_SHIPPER, 'status' => Constants::STATUS_ACTIVE , 'stock_id' => 4
+            ],
+            [
+                'name' => 'Shipper HT' , 'email' => 'shy@gmail.com' , 'password' =>Hash::make('123456'), 'email_verified_at' => now(),'role' => Constants::ROLE_SHIPPER, 'status' => Constants::STATUS_ACTIVE , 'stock_id' => 5
             ],
         ];
 
         User::insert($users);
 
         $fees = [
-            ['weight' =>  5 , 'price_point' => 3000],
-            ['weight' =>  10 , 'price_point' => 5000],
-            ['weight' =>  20 , 'price_point' => 9000],
-            ['weight' =>  30 , 'price_point' => 15000],
-            ['weight' =>  50 , 'price_point' => 30000]
+            ['weight' =>  5 , 'price_point' => 6000],
+            ['weight' =>  10 , 'price_point' => 10000],
+            ['weight' =>  20 , 'price_point' => 18000],
+            ['weight' =>  30 , 'price_point' => 30000],
+            ['weight' =>  50 , 'price_point' => 60000]
         ];
 
         ShippingFee::insert($fees);

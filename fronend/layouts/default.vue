@@ -11,10 +11,10 @@
           <ul class="navbar-nav ms-auto mb-2 mb-lg-0" id="profile">
             <li class="nav-item dropdown">
               <a class="nav-link dropdown-toggle" href="#" id="navbarDropdownMenuLink" role="button" data-bs-toggle="dropdown" aria-expanded="false">
-                User
+                {{ loggedInUser.name }}
               </a>
               <ul class="dropdown-menu" aria-labelledby="navbarDropdownMenuLink">
-                <li><a class="dropdown-item" href="#">Logout</a></li>
+                <li><a class="dropdown-item" href="#" @click="logout">Logout</a></li>
               </ul>
             </li>
           </ul>
@@ -31,5 +31,18 @@
   padding: 10px;
 }
 </style>
-<script setup>
+<script >
+import { mapGetters } from 'vuex'
+
+export default {
+  computed: {
+    ...mapGetters(['loggedInUser'])
+  },
+  methods: {
+    async logout() {
+      await this.$auth.logout();
+      this.$router.push('/login')
+    },
+  },
+}
 </script>

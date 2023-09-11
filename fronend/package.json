@@ -11,6 +11,8 @@
   "dependencies": {
     "@fortawesome/free-brands-svg-icons": "^6.4.2",
     "@fortawesome/free-solid-svg-icons": "^6.4.2",
+    "@nuxtjs/auth": "^4.5.1",
+    "@nuxtjs/axios": "^5.3.1",
     "@nuxtjs/fontawesome": "^1.1.2",
     "bootstrap": "^5.3.1",
     "choices.js": "^10.2.0",
@@ -18,10 +20,13 @@
     "jquery": "^3.7.1",
     "nuxt": "^2.15.8",
     "popper.js": "^1.16.1",
+    "store": "^2.0.12",
+    "sweetalert2": "^11.7.27",
     "vue": "^2.7.10",
     "vue-js-modal": "^2.0.1",
     "vue-server-renderer": "^2.7.10",
     "vue-star-rating": "^1.7.0",
+    "vue-sweetalert2": "^5.0.5",
     "vue-template-compiler": "^2.7.10"
   }
 }

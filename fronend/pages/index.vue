@@ -78,17 +78,28 @@
 </template>
 
 <script>
+
+import ApiService from "@/api/service.api.js";
+
 export default {
   name: 'IndexPage',
   data() {
     return {
       rating: 3.5,
+      user : this.$auth.user
     }
   },
+  async mounted() {
+    await this.getList();
+  },
   methods: {
-    setRating: function(rating) {
+    setRating: function (rating) {
       alert(1)
     },
+    async getList() {
+      let res = await ApiService.get('/order')
+      console.log(res)
+    }
   },
 }
 </script>

@@ -22,6 +22,7 @@ class OrderProcess extends Model
         "order_id",
         "employee_assign_id",
         "stock_id",
+        "type",
         "status"
     ];
 
@@ -35,7 +36,7 @@ class OrderProcess extends Model
 
     public function order(): BelongsTo
     {
-        return $this->belongsTo(Order::class, 'order', 'id');
+        return $this->belongsTo(Order::class, 'order_id', 'id');
     }
 
 }

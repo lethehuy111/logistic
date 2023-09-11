@@ -2,92 +2,63 @@
 
 namespace App\Http\Controllers\Auth;
 
+use App\Exceptions\BusinessException;
 use App\Http\Controllers\Controller;
-use App\Repositories\Auth\AuthRepository;
+use App\Http\Requests\AuthRequest;
+use App\Http\Resources\Auth\AuthResource;
+use App\Http\Resources\EmptyResource;
+use App\Http\Resources\Profile\UserResource;
 use App\Repositories\Interfaces\AuthRepositoryInterface;
-use Illuminate\Http\Request;
-use Illuminate\Support\Facades\Auth;
-use Illuminate\Support\Facades\Hash;
-use App\Models\User;
+use Illuminate\Http\JsonResponse;
+use Symfony\Component\HttpFoundation\Response;
 
 class AuthController extends Controller
 {
+    /**
+     * @var AuthRepositoryInterface
+     */
     private $repository;
 
+    /**
+     * @param AuthRepositoryInterface $repository
+     */
     public function __construct(AuthRepositoryInterface $repository)
     {
         $this->middleware('auth:api', ['except' => ['login','register']]);
         $this->repository = $repository;
     }
-
-    public function login(Request $request)
+    /**
+     * @return JsonResponse
+     * @throws BusinessException
+     */
+    public function index() :JsonResponse
     {
-        $request->validate([
-            'email' => 'required|string|email',
-            'password' => 'required|string',
-        ]);
+        $user = auth()->user();
+        if (!isset($user)) {
+            throw new BusinessException('User not found', Response::HTTP_BAD_REQUEST);
+        }
+        return response()->json(new UserResource($user));
+    }
+    /**
+     * @param AuthRequest $request
+     * @return JsonResponse
+     */
+    public function login(AuthRequest $request): JsonResponse
+    {
         $credentials = $request->only('email', 'password');
         $user = $this->repository->login($credentials);
-        if (!$user) {
-            return response()->json([
-                'status' => 'error',
-                'message' => 'Unauthorized',
-            ], 401);
-        }
 
-        return response()->json([
-            'status' => 'success',
-            'user' => $user,
-            'authorisation' => [
-                'token' => $user->token,
-                'type' => 'bearer',
-            ]
-        ]);
+        return response()->json(new AuthResource($user));
+
     }
 
-    public function register(Request $request){
-        $request->validate([
-            'name' => 'required|string|max:255',
-            'email' => 'required|string|email|max:255|unique:users',
-            'password' => 'required|string|min:6',
-        ]);
-
-        $user = User::create([
-            'name' => $request->name,
-            'email' => $request->email,
-            'password' => Hash::make($request->password),
-        ]);
-
-        $token = Auth::login($user);
-        return response()->json([
-            'status' => 'success',
-            'message' => 'User created successfully',
-            'user' => $user,
-            'authorisation' => [
-                'token' => $token,
-                'type' => 'bearer',
-            ]
-        ]);
-    }
-
-    public function logout()
+    /**
+     * @return JsonResponse
+     */
+    public function logout(): JsonResponse
     {
-        Auth::logout();
-        return response()->json([
-            'status' => 'success',
-            'message' => 'Successfully logged out',
-        ]);
-    }
+        $this->repository->logout();
 
-    public function refresh()
-    {
-        return response()->json([
-            'status' => 'success',
-            'user' => Auth::user(),
-            'authorisation' => [
-                'token' => Auth::refresh(),
-                'type' => 'bearer',
-            ]
-        ]);
+        return response()->json(new EmptyResource([]));
     }
 }
